@@ -14,7 +14,7 @@ function(){
           column(
             width = 12,
               column(
-                width = 6,
+                width = 8,
                 selectInput(inputId = "download_se", 
                             label = "Choose the data type to download",
                             choices = c("Characteristic names", 
@@ -44,22 +44,8 @@ function(){
                                                 choices = c("Lake, Reservoir, Impoundment", "Stream"), 
                                                 multiple = TRUE,
                                                 selected = "Stream")
-                ),
-                strong("Download the macroinvertebrate count data"),
-                br(),
-                checkboxInput(inputId = "biological_check", label = "Save the data as a separate CSV file")
-              ),
-              column(
-                width = 6,
-                h3("Create the SANDS output"),
-                checkboxInput(inputId = "SANDS_check", label = "Create the SANDS output as CSV files in a ZIP folder"),
-                checkboxGroupButtons(inputId = "MT_par_group",
-                                     label = "Select the filter groups",
-                                     choices = c("Metals (Water Column)" = "metal_w", 
-                                                 "Metals (Sediment)" = "metal_s", 
-                                                 "Salinity" = "salinity", 
-                                                 "Oil & Gas" = "oil_gas", 
-                                                 "Nutrients" = "nutrients"))
+                                 
+                )
               )
           )
         ),
@@ -90,7 +76,9 @@ function(){
                              column(
                                width = 4,
                                selectizeInput(inputId = "State_se", label = "Select state",
-                                              choices = c("Montana", "Wyoming"), multiple = FALSE)
+                                              choices = c("Colorado", "Montana", 
+                                                          "North Dakota", "South Dakota",
+                                                          "Utah", "Wyoming"), multiple = FALSE)
                              ),
                              column(
                                width = 8
@@ -174,8 +162,6 @@ function(){
           width = 12, collapsible = TRUE,
           downloadButton(outputId = "data_download", label = "Save data"),
           downloadButton(outputId = "data_download_QC", label = "Save QC data"),
-          downloadButton(outputId = "SANDS_data_download", label = "Save SANDS format data"),
-          downloadButton(outputId = "data_download_bio", label = "Save macroinvertebrate count data"),
           actionButton(inputId = "Reset", "Reset")
         )
       )

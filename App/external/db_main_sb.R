@@ -27,32 +27,7 @@ function(id) {
       menuItem(
         text = "Data Download",
         tabName = "Download",
-        icon = icon("pen")
-      ),
-      # Tab 3: Join AU
-      menuItem(
-        text = "Join AU",
-        tabName = "AU",
-        icon = icon("pen")
-      ),
-      # Tab 4: Data Sufficiency
-      menuItem(
-        text = "Data Sufficiency",
-        tabName = "Sufficiency",
-        icon = icon("poll")
-      ),
-      # Tab 5: Analysis
-      menuItem(
-        text = "Data Analysis",
-        tabName = "Analysis",
-        icon = icon("poll")
-      ),
-      # Tab 6: SANDS format
-      menuItem(
-        text = "Data Summary Export",
-        tabName = "SANDS",
-        icon = icon("poll")
-      )
+        icon = icon("pen"))
     )## sidebarMenu ~ END
   )## dashboardSidebar ~ END
 }## FUNCTION ~ END
