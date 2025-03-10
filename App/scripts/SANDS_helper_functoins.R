@@ -6,7 +6,7 @@ library(lubridate)
 library(data.table)
 library(collapse)
 library(dataRetrieval)
-library(TADA)
+library(EPATADA)
 library(tigris)
 library(tidycensus)
 
@@ -117,7 +117,6 @@ SANDS_clean_result <- function(x, ref){
   if (nrow(x) > 0){
     x2 <- x %>%
       frename(function(x) str_replace(x, fixed("."), fixed("/"))) %>%
-      fselect(-timeZoneStart, -timeZoneEnd, -ActivityStartDateTime, -ActivityEndDateTime) %>%
       # Reorder the columns
       get_vars(ref_col)
   } else {
@@ -784,11 +783,17 @@ sed_tab <- function(x, address_dat, lookup, header){
   
   if (nrow(x) > 0){
     
-    # Filter the "ACTIVITY MEDIA" as "Water"
+    # Filter the "ACTIVITY MEDIA" as "Sediment"
     x2 <- x %>% 
       fsubset(`ACTIVITY MEDIA` %in% "Sediment") %>%
       # Filter the parameter names
       fsubset(`CHARACTERISTIC NAME` %in% par_name)
+    
+    # # Additional steps to convert UG/L to UG/G
+    # if (nrow(x2) > 0){
+    #   x2 <- x2 %>%
+    #     fmutate(Units = ifelse(Units %in% "UG/L", "UG/G", Units))
+    # }
     
     if (nrow(x2) > 0){
       # Join x2 with lookup

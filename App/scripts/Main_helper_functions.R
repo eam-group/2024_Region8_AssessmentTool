@@ -7,7 +7,7 @@ library(data.table)
 library(collapse)
 library(dataRetrieval)
 library(tigris)
-library(TADA)
+library(EPATADA)
 
 ### A helper function to count the data
 count_fun <- function(dat, ...){
@@ -62,6 +62,67 @@ args_create <- function(statecode = NULL, huc = NULL,
   args <- args[map_lgl(args, function(x) !is.null(x))]
   
   return(args)
+}
+
+TADA_args_create <- function(
+    startDate = "null",
+    endDate = "null",
+    countrycode = "null",
+    countycode = "null",
+    huc = "null",
+    siteid = "null",
+    siteType = "null",
+    characteristicName = "null",
+    characteristicType = "null",
+    sampleMedia = "null",
+    statecode = "null",
+    organization = "null",
+    project = "null",
+    providers = "null"
+){
+  args <- list(
+    startDate = startDate,
+    endDate = endDate,
+    countrycode = countrycode,
+    countycode = countycode,
+    huc = huc,
+    siteid = siteid,
+    siteType = siteType,
+    characteristicName = characteristicName,
+    characteristicType = characteristicType,
+    sampleMedia = sampleMedia,
+    statecode = statecode,
+    organization = organization,
+    project = project,
+    providers = providers
+  )
+  return(args)
+}
+
+# A function to select the targert columns
+TADA_selector <- function(TADA_dat){
+  
+  TADA_dat2 <- TADA_dat %>%
+    # fselect(ActivityTypeCode:TADA.ActivityType.Flag,
+    #         TADA.ActivityMediaName:TADA.CharacteristicNameAssumptions,
+    #         MethodSpeciationName:ActivityStartDateTime,
+    #         ResultMeasureValue:TADA.CensoredMethod,
+    #         Depth, 
+    #         TADA.ResultDepthHeightMeasure.MeasureValue,
+    #         TADA.ActivityDepthHeightMeasure.MeasureValue,
+    #         TADA.ActivityTopDepthHeightMeasure.MeasureValue,
+    #         TADA.ActivityBottomDepthHeightMeasure.MeasureValue,
+    #         StatisticalBaseCode,
+    #         TADA.AggregatedContinuousData.Flag,
+    #         ResultAnalyticalMethod.MethodName:TADA.MeasureQualifierCode.Def) %>%
+    fmutate(ActivityStartDate = ymd(ActivityStartDate)) %>%
+    # Add the state name
+    left_join(dataRetrieval::stateCd %>% dplyr::select(STATE_NAME, STATE),
+              by = c("StateCode" = "STATE")) %>%
+    rename(StateName = STATE_NAME) %>%
+    relocate(StateName, .before = StateCode)
+  
+  return(TADA_dat2)
 }
 
 # A function to pull site data
@@ -208,8 +269,12 @@ TADA_join_tribal <- function(TADA_dat, tribal_sf){
   site_sf <- site %>%
     st_as_sf(coords = c("TADA.LongitudeMeasure",
                         "TADA.LatitudeMeasure"), crs = 4326)
+  
+  tribal_sf <- tribal_sf %>%
+    st_transform(crs = 4326)
 
   site2 <- site_sf %>% 
+
     st_join(tribal_sf) %>%
     st_set_geometry(NULL)
   
@@ -218,32 +283,6 @@ TADA_join_tribal <- function(TADA_dat, tribal_sf){
     relocate(MT_Res_Name, .after = StateCode)
   
   return(TADA_dat3)
-}
-
-# A function to select the targert columns
-TADA_selector <- function(TADA_dat){
-  
-  TADA_dat2 <- TADA_dat %>%
-    # fselect(ActivityTypeCode:TADA.ActivityType.Flag,
-    #         TADA.ActivityMediaName:TADA.CharacteristicNameAssumptions,
-    #         MethodSpeciationName:ActivityStartDateTime,
-    #         ResultMeasureValue:TADA.CensoredMethod,
-    #         Depth, 
-    #         TADA.ResultDepthHeightMeasure.MeasureValue,
-    #         TADA.ActivityDepthHeightMeasure.MeasureValue,
-    #         TADA.ActivityTopDepthHeightMeasure.MeasureValue,
-    #         TADA.ActivityBottomDepthHeightMeasure.MeasureValue,
-    #         StatisticalBaseCode,
-    #         TADA.AggregatedContinuousData.Flag,
-    #         ResultAnalyticalMethod.MethodName:TADA.MeasureQualifierCode.Def) %>%
-    fmutate(ActivityStartDate = ymd(ActivityStartDate)) %>%
-    # Add the state name
-    left_join(dataRetrieval::stateCd %>% dplyr::select(STATE_NAME, STATE),
-              by = c("StateCode" = "STATE")) %>%
-    rename(StateName = STATE_NAME) %>%
-    relocate(StateName, .before = StateCode)
-  
-  return(TADA_dat2)
 }
 
 ### TADA function transformation to possibly
@@ -260,7 +299,7 @@ TADA_FindPotentialDuplicatesSingleOrg_poss <- possibly(TADA_FindPotentialDuplica
 TADA_FindPotentialDuplicatesMultipleOrgs_poss <- possibly(TADA_FindPotentialDuplicatesMultipleOrgs)
 TADA_FindQAPPApproval_poss <- possibly(TADA_FindQAPPApproval)
 TADA_FindQAPPDoc_poss <- possibly(TADA_FindQAPPDoc)
-TADA_FindContinuousData_poss <- possibly(TADA_FindContinuousData)
+TADA_FlagContinuousData_poss <- possibly(TADA_FlagContinuousData)
 TADA_FlagAboveThreshold_poss <- possibly(TADA_FlagAboveThreshold)
 TADA_FlagBelowThreshold_poss <- possibly(TADA_FlagBelowThreshold)
 TADA_HarmonizeSynonyms_poss <- possibly(TADA_HarmonizeSynonyms)

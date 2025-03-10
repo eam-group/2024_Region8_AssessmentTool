@@ -1,34 +1,3 @@
 "MonitoringLocationIdentifier","State","MonitoringLocationName","MonitoringLocationTypeName","LatitudeMeasure","LongitudeMeasure","AU_ID","AU_NAME","DrinkingWater_Use","Ecological_Use","FishConsumption_Use","Recreational_Use","Other_Use","Dist_to_AU_m"
-"USGS-12301933","Montana",NA,"Stream",48.40066389,-115.3187194,"MT76D001_010","Kootenai River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"USGS-12303500","Montana",NA,"Stream",48.4468611,-115.877136,"MT76D002_070","Lake Creek","Fully Supporting","Not Supporting",NA,"Not Supporting","Not Assessed",0
-"USGS-4828121155315","Montana",NA,"Stream",48.4701361,-115.887486,"MT76D001_010","Kootenai River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"USGS-12301250","Montana",NA,"Stream",48.8779472,-115.054461,"MT76D004_010","Tobacco River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"USGS-12303498","Montana",NA,"Stream",48.4385,-115.87,"MT76D002_070","Lake Creek","Fully Supporting","Not Supporting",NA,"Not Supporting","Not Assessed",0
-"MDEQ_WQ_WQX-K01KOOTR08","Montana","Kootenai River at Riverside Park in Libby","River/Stream",48.39716,-115.55028,"MT76D001_010","Kootenai River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MTVOLWQM_WQX-KOOTCG","Montana","Kootenai River - Kootenai Campground","River/Stream",48.55962,-115.97698,"MT76D001_010","Kootenai River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MTVOLWQM_WQX-RIVERPARK","Montana","Kootenai River - Riverfront Park","River/Stream",48.39736,-115.54971,"MT76D001_010","Kootenai River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MTVOLWQM_WQX-ROOSPARK","Montana","Kootenai River - Roosevelt Park","River/Stream",48.47022,-115.88847,"MT76D001_010","Kootenai River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MTVOLWQM_WQX-RIBOBT","Montana","Bobtail Creek","River/Stream",48.427648,-115.603687,"MT76D002_080","Bobtail Creek","Not Assessed","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MTVOLWQM_WQX-RILAKE","Montana","Lake Creek","River/Stream",48.450588,-115.879262,"MT76D002_070","Lake Creek","Fully Supporting","Not Supporting",NA,"Not Supporting","Not Assessed",0
-"MTVOLWQM_WQX-RILIBBY","Montana","Libby Creek","River/Stream",48.388911,-115.537905,"MT76D002_062","Libby Creek","Not Assessed","Not Supporting",NA,"Not Assessed","Fully Supporting",0
-"MTVOLWQM_WQX-RIQTZ","Montana","Quartz Creek","River/Stream",48.43937,-115.635763,"MT76D002_090","Quartz Creek","Not Assessed","Fully Supporting",NA,"Not Assessed","Fully Supporting",0
-"MTVOLWQM_WQX-RSBRIS","Montana","Bristow Creek","River/Stream",48.544461,-115.292924,"MT76D002_110","Bristow Creek","Not Assessed","Fully Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MTVOLWQM_WQX-RSCRHS","Montana","Cripple Horse Creek","River/Stream",48.478831,-115.260144,"MT76D002_100","Cripple Horse Creek","Not Assessed","Not Supporting",NA,"Not Assessed","Not Assessed",0
-"MTVOLWQM_WQX-RSDODG","Montana","Dodge Creek","River/Stream",48.933683,-115.202869,"MT76D002_141","Dodge Creek","Not Assessed","Not Assessed",NA,"Not Assessed","Not Assessed",0
-"MTVOLWQM_WQX-RSTOBC","Montana","Tobacco River","River/Stream",48.897407,-115.122037,"MT76D004_010","Tobacco River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MTVOLWQM_WQX-RSYUNG","Montana","Young Creek","River/Stream",48.96261,-115.196781,"MT76D002_131","Young Creek","Not Assessed","Not Assessed",NA,"Not Assessed","Not Assessed",0
-"USACENWS_WQX-LIBTW","Montana","Kootenai River at Libby Dam Tailwater","River/Stream",48.406555,-115.317283,"MT76D001_010","Kootenai River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MT305B_SECONDARYDATA-LC-4","Montana","Lake Creek 04","River/Stream",48.35521,-115.84843,"MT76D002_070","Lake Creek","Fully Supporting","Not Supporting",NA,"Not Supporting","Not Assessed",0
-"MT305B_SECONDARYDATA-LC-2","Montana","Lake Creek 02","River/Stream",48.32901,-115.86549,"MT76D002_070","Lake Creek","Fully Supporting","Not Supporting",NA,"Not Supporting","Not Assessed",0
-"MT305B_SECONDARYDATA-LC-1","Montana","Lake Creek 01","River/Stream",48.30413,-115.86556,"MT76D002_070","Lake Creek","Fully Supporting","Not Supporting",NA,"Not Supporting","Not Assessed",0
-"MT305B_SECONDARYDATA-SC-2","Montana","Stanley Creek 02","River/Stream",48.2813,-115.89307,"MT76D002_010","Stanley Creek","Fully Supporting","Not Supporting",NA,"Insufficient Information","Not Assessed",0
-"MT305B_SECONDARYDATA-FC-1","Montana","Fairway Creek 01","River/Stream",48.28088,-115.89543,"MT76D002_011","Fairway Creek","Not Assessed","Not Assessed",NA,"Not Assessed","Not Assessed",0
-"MDEQ_WQ_WQX-K01CHRSC01","Montana","Cripple Horse Creek near mouth (Lake Koocanusa)","River/Stream",48.47739,-115.25556,"MT76D002_100","Cripple Horse Creek","Not Assessed","Not Supporting",NA,"Not Assessed","Not Assessed",0
-"MDEQ_WQ_WQX-K01TOBCR01","Montana","Tobacco River below Grave and Fortine confluence","River/Stream",48.7997,-114.9531,"MT76D004_010","Tobacco River","Fully Supporting","Not Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MDEQ_WQ_WQX-K01YUNGC01","Montana","Young Creek near mouth (Lake Koocanusa)","River/Stream",48.96254,-115.19665,"MT76D002_131","Young Creek","Not Assessed","Not Assessed",NA,"Not Assessed","Not Assessed",0
-"MDEQ_WQ_WQX-K01DODGC01","Montana","Dodge Creek at mouth (Lake Koocanusa)","River/Stream",48.9319,-115.19468,"MT76D002_141","Dodge Creek","Not Assessed","Not Assessed",NA,"Not Assessed","Not Assessed",0
-"MDEQ_WQ_WQX-K01BRISC01","Montana","Bristow Creek at road crossing","River/Stream",48.5444,-115.2931,"MT76D002_110","Bristow Creek","Not Assessed","Fully Supporting",NA,"Fully Supporting","Fully Supporting",0
-"MT305B_SECONDARYDATA-SC-15A","Montana","Stanley Creek 15A","River/Stream",48.24323,-115.90768,"MT76D002_010","Stanley Creek","Fully Supporting","Not Supporting",NA,"Insufficient Information","Not Assessed",0
-"MT305B_SECONDARYDATA-SC-15B","Montana","Stanley Creek 15B","River/Stream",48.24307,-115.90728,"MT76D002_010","Stanley Creek","Fully Supporting","Not Supporting",NA,"Insufficient Information","Not Assessed",0
-"MT305B_SECONDARYDATA-SC-15C","Montana","Stanley Creek 15C","River/Stream",48.24311,-115.90659,"MT76D002_010","Stanley Creek","Fully Supporting","Not Supporting",NA,"Insufficient Information","Not Assessed",0
-"MT305B_SECONDARYDATA-SC-17A","Montana","Stanley Creek 17A","River/Stream",48.25097,-115.89722,"MT76D002_010","Stanley Creek","Fully Supporting","Not Supporting",NA,"Insufficient Information","Not Assessed",0
+"MDEQ_WQ_WQX-M24MUSSR09","Montana","Musselshell River about 400 yards downstream Hwy 191 bridge","River/Stream",46.4289,-109.8377,"MT40A001_010","Musselshell River","Fully Supporting","Not Supporting",NA,"Not Supporting","Not Assessed",0
+"MDEQ_WQ_WQX-M24MUSSR10","Montana","Musselshell River at Selkirk Fishing Access","River/Stream",46.46463,-110.22929,"MT40A001_010","Musselshell River","Fully Supporting","Not Supporting",NA,"Not Supporting","Not Assessed",0

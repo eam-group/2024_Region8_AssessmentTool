@@ -90,7 +90,9 @@ function(){
                              column(
                                width = 4,
                                selectizeInput(inputId = "State_se", label = "Select state",
-                                              choices = c("Montana", "Wyoming"), multiple = FALSE)
+                                              choices = c("Colorado", "Montana", 
+                                                          "North Dakota", "South Dakota",
+                                                          "Utah", "Wyoming"), multiple = FALSE)
                              ),
                              column(
                                width = 8

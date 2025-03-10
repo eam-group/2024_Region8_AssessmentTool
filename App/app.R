@@ -19,14 +19,14 @@ library(leaflet)
 library(leaflet.extras)
 library(plotly)
 library(zip)
-library(TADA)
+library(EPATADA)
 library(tigris)
 library(tidycensus)
 library(spsComps)
 library(scales)
 
 # Load the data
-load("DataInput/InputData35.RData")
+load("DataInput/InputData39.RData")
 load("DataInput/SANDS_input24.RData")
 
 # Load the tabs
@@ -353,9 +353,9 @@ server <- function(input, output, session){
   HUC8_dat <- reactive({
     
     if (!input$state_out_bound){
-      return(HUC8_WY_MT_simple)
+      return(Region8_simple)
     } else if (input$state_out_bound){
-      return(HUC8_WY_MT_out_simple)
+      return(Region8_out_simple)
     }
   })
   
@@ -824,49 +824,54 @@ server <- function(input, output, session){
               
               if (input$download_se %in% "Characteristic names"){
                 if (length(char_par) <= 5){
-                  args_temp <- args_create(
+                  args_temp <- TADA_args_create(
                     huc = HUC_temp,
                     characteristicName = char_par,
-                    startDateLo = Start_temp,
-                    startDateHi = End_temp,
+                    startDate = Start_temp,
+                    endDate = End_temp,
                     siteType = input$sitetype_se
                   )
                 } else {
-                  args_temp <- args_create(
+                  args_temp <- TADA_args_create(
                     huc = HUC_temp,
-                    startDateLo = Start_temp,
-                    startDateHi = End_temp,
+                    startDate = Start_temp,
+                    endDate = End_temp,
                     siteType = input$sitetype_se
                   )
                 }
               } else if (input$download_se %in% "Organic characteristic group"){
-                args_temp <- args_create(
+                args_temp <- TADA_args_create(
                   huc = HUC_temp,
                   characteristicType = char_group,
-                  startDateLo = Start_temp,
-                  startDateHi = End_temp,
+                  startDate = Start_temp,
+                  endDate = End_temp,
                   siteType = input$sitetype_se
                 )
               } else if (input$download_se %in% "All data"){
-                args_temp <- args_create(
+                args_temp <- TADA_args_create(
                   huc = HUC_temp,
-                  startDateLo = Start_temp,
-                  startDateHi = End_temp
+                  startDate = Start_temp,
+                  endDate = End_temp
                 )
               }
               
-              
-              resultPhysChem_temp <- resultPhysChem_download(args_temp, 
-                                                             ref = resultPhysChem_template)
-              
-              project_temp <- project_download(args_temp, ref = project_template)
-              
-              site_temp <- site_download(args_temp, ref = site_template)
-              
-              output_temp <- TADA_join3(site = site_temp, 
-                                        resultphyschem = resultPhysChem_temp,
-                                        project = project_temp, 
-                                        ref = TADA_download_temp)
+              output_temp <- TADA_DataRetrieval(
+                startDate = as.character(args_temp[["startDate"]]),
+                endDate =  as.character(args_temp[["endDate"]]),
+                countrycode = args_temp[["countrycode"]],
+                countycode = args_temp[["countycode"]],
+                huc = args_temp[["huc"]],
+                siteid = args_temp[["siteid"]],
+                siteType = args_temp[["siteType"]],
+                characteristicName = args_temp[["characteristicName"]],
+                characteristicType = args_temp[["characteristicType"]],
+                sampleMedia = args_temp[["sampleMedia"]],
+                statecode = args_temp[["statecode"]],
+                organization = args_temp[["organization"]],
+                project = args_temp[["project"]],
+                providers = args_temp[["providers"]],
+                applyautoclean = FALSE
+              )
               
               if (is.null(output_temp)){
                 output_temp <- TADA_download_temp
@@ -1591,24 +1596,24 @@ server <- function(input, output, session){
         
       })
       
-      # TADA_FindContinuousData
+      # TADA_FlagContinuousData
       observe({
         req(reVal$WQP_FindQAPPDoc)
         
-        # message("Function: TADA_FindContinuousData")
+        # message("Function: TADA_FlagContinuousData")
         
-        showModal(modalDialog(title = "Run TADA_FindContinuousData", 
+        showModal(modalDialog(title = "Run TADA_FlagContinuousData", 
                               footer = NULL))
         
-        temp_dat <- TADA_FindContinuousData_poss(
+        temp_dat <- TADA_FlagContinuousData_poss(
           .data = reVal$WQP_FindQAPPDoc
         )
         
         if (is.null(temp_dat)){
-          temp_dat <- TADA_FindContinuousData_temp
+          temp_dat <- TADA_FlagContinuousData_temp
         }
         
-        reVal$WQP_FindContinuousData <- temp_dat
+        reVal$WQP_FlagContinuousData <- temp_dat
         
         reVal$WQP_FindQAPPDoc <- NULL
         
@@ -1618,7 +1623,7 @@ server <- function(input, output, session){
       
       # TADA_FlagAboveThreshold
       observe({
-        req(reVal$WQP_FindContinuousData)
+        req(reVal$WQP_FlagContinuousData)
         
         # message("Function: TADA_FlagAboveThreshold")
         
@@ -1626,7 +1631,7 @@ server <- function(input, output, session){
                               footer = NULL))
         
         temp_dat <- TADA_FlagAboveThreshold_poss(
-          .data = reVal$WQP_FindContinuousData
+          .data = reVal$WQP_FlagContinuousData
         )
         
         if (is.null(temp_dat)){
@@ -1635,7 +1640,7 @@ server <- function(input, output, session){
         
         reVal$WQP_FlagAboveThreshold <- temp_dat
         
-        reVal$WQP_FindContinuousData <- NULL
+        reVal$WQP_FlagContinuousData <- NULL
         
         removeModal()
         
